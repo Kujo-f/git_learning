@@ -58,11 +58,7 @@ int main()
 		command[strcspn(command, "\n")] = '\0';
 
 		/* checks for exit command */
-		if (strcmp(command, "exit") == 0)
-		{
-			
-			break;
-		}
+		
 
 		/* forking a process to execute the command */
 		pid = fork();
@@ -83,7 +79,6 @@ int main()
 
 			if (execvp(command, args) == -1)
 			{
-				perror("command not found");
 				
 				exit(EXIT_FAILURE);
 			}
@@ -99,7 +94,7 @@ int main()
 				exit_status = WEXITSTATUS(status);
 				if (exit_status != 0)
 				{
-					write(STDOUT_FILENO, "./shell: NO such file or directory\n",  35);
+					write(STDOUT_FILENO, "./shell: No such file or directory\n",  35);
 				}
 			}
 		}
